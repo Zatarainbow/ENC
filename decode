@@ -1,0 +1,135 @@
+#contac with me telegram @zatarainbow
+import os
+import marshal
+import base64
+import zlib
+from Cython.Build import cythonize
+
+logo = '''
+`7MM"""YMM  `7MN.   `7MF' .g8"""bgd 
+  MM    `7    MMN.    M .dP'     `M 
+  MM   d      M YMb   M dM'       ` 
+  MMmmMM      M  `MN. M MM        
+  MM   Y  ,   M   `MM.M MM.       
+  MM     ,M   M     YMM `Mb.     ,' 
+.JMMmmmmMMM .JML.    YM   `"bmmmd' 
+'''
+
+def clear():
+    os.system('clear')
+    print(logo)
+    print('----------------------------------------')
+    print(' FACEBOOK : Md Papel')
+    print(' GITHUB   : MR-NOOB-404')
+    print('----------------------------------------')
+
+def main():
+    clear()
+    print(" [1] MARSHAL ENCRYPTION ")
+    print(" [2] BASE64  ENCRYPTION ")
+    print(" [3] ZLIB    ENCRYPTION ")
+    print(" [4] CYTHON  EXECUTABLE ")
+    print(" [0] EXIT TERMINAL ")
+    print('----------------------------------------')
+    option = input(" [?] CHOICE MENU : ")
+
+    if option in ('1', 'A'):
+        marshal_enc()
+    elif option in ('2', 'B'):
+        base64_enc()
+    elif option in ('3', 'C'):
+        zlib_enc()
+    elif option in ('4', 'D'):
+        cython_executable()
+    else:
+        exit(' TOOL EXITED :/')
+
+def marshal_enc():
+    clear()
+    file = input(' ENTER SOURCE FILE NAME : ')
+    filex = input(' ENTER OUTPUT FILE NAME : ')
+
+    try:
+        with open(file, 'r') as f:
+            file_open = f.read()
+    except FileNotFoundError:
+        exit(' FILE NOT FOUND ERROR !!')
+
+    compilex = compile(file_open, 'dg', 'exec')
+    dump = marshal.dumps(compilex)
+
+    run_code = f'import marshal \nexec(marshal.loads({dump}))'
+
+    with open(filex, 'w') as out_put:
+        out_put.write(run_code)
+
+    print('----------------------------------------')
+    print(' [✓✓] ENCRYPTION COMPLETE :/ ')
+    print(f' [✓✓] OUTPUT FILE SAVE AS : {filex}')
+
+def base64_enc():
+    clear()
+    input_file = input(' ENTER SOURCE FILE PATH : ')
+    output_file = input(' ENTER OUTPUT FILE PATH : ')
+
+    try:
+        with open(input_file, 'r') as f:
+            file_open = f.read()
+    except FileNotFoundError:
+        exit(' FILE NOT FOUND ERROR !!')
+
+    compile = base64.b64encode(file_open.encode())
+
+    run_code = f'import base64\nexec(base64.b64decode({compile}))'
+
+    with open(output_file, 'w') as out_put:
+        out_put.write(run_code)
+
+    print(' [✓✓] ENCRYPTION COMPLETE :/')
+    print(f' [✓✓] ENC FILE SAVE AS : {output_file}')
+
+def zlib_enc():
+    clear()
+    src = input(' ENTER SOURCE FILE PATH : ')
+    save_file = input(' ENTER OUTPUT FILE PATH : ')
+
+    try:
+        with open(src, 'r') as f:
+            src_file = f.read()
+    except FileNotFoundError:
+        exit(' FILE NOT FOUND !!')
+
+    compile_zlib = zlib.compress(src_file.encode())
+
+    run_code = f'import zlib\nexec(zlib.decompress({compile_zlib}).decode())'
+
+    with open(save_file, 'w') as out_put:
+        out_put.write(run_code)
+
+    print(' [✓✓] ENCRYPTION COMPLETE :/')
+    print(f' [✓✓] ENC FILE SAVE AS : {save_file}')
+
+def cython_executable():
+    clear()
+    file = input(' ENTER SOURCE FILE PATH : ')
+
+    try:
+        with open(file, 'r') as f:
+            filex = f.read()
+    except FileNotFoundError:
+        exit(' FILE NOT FOUND ERROR :/')
+
+    error = filex.replace('\t', '    ')
+
+    with open(file, 'w') as f:
+        f.write(error)
+
+    cythonize(file)
+
+    clear()
+    print(' [✓✓] CYTHON EXECUTABLE COMPLETE :")')
+    save = file[:-3]  # Assuming .py extension
+    print(f' [✓✓] EXECUTABLE FILE SAVE AS : {save}')
+
+if __name__ == "__main__":
+    main()
